@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V5lWewPXb9/AJBINUhMIu8jdXX9stspP+ilPsVBtndDAa53R5WFbVTYhUk9q+9pHzagy4MatVtf7mIwtfn1MTA==",
+  "dgSpecHash": "RC6O4J1S9kW93WxH+RxsBK3PTDcNnE3Y0U/MT7Je5VmYhDZzHo5riaNNnKYya3wXp6rGB5AGtslY58dGjwIHew==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_0512\\METABack\\METABack\\METABack.csproj",
+  "projectFilePath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_080124\\METABack\\METABack\\METABack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Arij\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Arij\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.9\\microsoft.aspnet.cors.5.2.9.nupkg.sha512",

@@ -27,16 +27,23 @@ namespace METABack.Repositories
             {
                 query = query.Where(e => e.LibeDele == criteria.Delegation);
             }
-            if (!string.IsNullOrEmpty(criteria.Etat))
-            {
-                query = query.Where(e => e.LibeEtatEtab == criteria.Etat);
-            }
             if (!string.IsNullOrEmpty(criteria.Type))
             {
                 query = query.Where(e => e.LibeTypeEtab == criteria.Type);
             }
+            if (!string.IsNullOrEmpty(criteria.CodeEtab))
+            {
+                query = query.Where(e => e.CodeEtab == criteria.CodeEtab);
+            }
+            if (!string.IsNullOrEmpty(criteria.Etat))
+            {
+                query = query.Where(e => e.LibeEtatEtab == criteria.Etat);
+            }
+            
 
-            var etablissements = await query.Where(e => e.AnneScol == 2022).ToListAsync();
+            int AnneScol = _dbContext.ParametrageAnneeScolaires.Where(e => e.Acti == true).Select(e => e.AnneScol).FirstOrDefault();
+
+            var etablissements = await query.Where(e => e.AnneScol == AnneScol).ToListAsync();
             return etablissements;
         }
 
@@ -45,8 +52,9 @@ namespace METABack.Repositories
 
         public List<ViewEtablissement> GetEtablissementByLibeAsync(string Libe)
         {
+            int AnneScol = _dbContext.ParametrageAnneeScolaires.Where(e => e.Acti == true).Select(e => e.AnneScol).FirstOrDefault();
             List<ViewEtablissement> Etablissements = _dbContext.ViewEtablissement
-                .Where(e => e.LibeGouv == Libe || e.LibeDele == Libe || e.LibeTypeEtab == Libe || e.LibeEtatEtab == Libe)
+                .Where(e => e.LibeGouv == Libe || e.LibeDele == Libe || e.LibeTypeEtab == Libe || e.LibeEtatEtab == Libe && e.AnneScol == AnneScol)
                 .ToList();
             return Etablissements;
         }

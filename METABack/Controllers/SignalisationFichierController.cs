@@ -17,34 +17,40 @@ namespace METABack.Controllers
             _dbContext = dbContext;
         }
 
-        
+
         [HttpPost("upload/{codeSignalisation}")]
-        public async Task<IActionResult> Upload(List<IFormFile> lstFiles,int codeSignalisation)
+        public async Task<IActionResult> Upload(List<IFormFile> lstFiles, int codeSignalisation)
         {
             if (lstFiles == null || lstFiles.Count == 0)
                 return BadRequest("Aucun fichier n'a été envoyé.");
 
             try
             {
-                using (var memoryStream = new MemoryStream())
+                foreach (var item in lstFiles)
                 {
-                    foreach (var item in lstFiles)
+                    if (item.Length > 0)
                     {
-                        await item.CopyToAsync(memoryStream);
-                        var signalisationFichier = new SignalisationFichier
+                        using (var memoryStream = new MemoryStream())
                         {
-                            NomFichier = item.FileName,
-                            CodeSignalisation = codeSignalisation,
-                            Extension = Path.GetExtension(item.FileName),
-                            Data = memoryStream.ToArray()
-                        };
-                        _dbContext.SignalisationFichiers.Add(signalisationFichier);
-                        await _dbContext.SaveChangesAsync();
+                            await item.CopyToAsync(memoryStream);
+                            memoryStream.Position = 0; // Remettre le curseur à la position initiale
+
+                            var signalisationFichier = new SignalisationFichier
+                            {
+                                NomFichier = item.FileName,
+                                CodeSignalisation = codeSignalisation,
+                                Extension = Path.GetExtension(item.FileName),
+                                Data = memoryStream.ToArray()
+                            };
+
+                            _dbContext.SignalisationFichiers.Add(signalisationFichier);
+                        }
                     }
-                        
                 }
 
-                return Ok("Fichier téléchargé avec succès.");
+                await _dbContext.SaveChangesAsync();
+
+                return Ok(new { message = "Fichier téléchargé avec succès." });
             }
             catch (Exception ex)
             {

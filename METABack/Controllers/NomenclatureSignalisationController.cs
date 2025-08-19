@@ -1,4 +1,4 @@
-﻿using METABack.Entities;
+﻿    using METABack.Entities;
 using METABack.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -23,14 +23,13 @@ namespace METABack.Controllers
             return await Task.FromResult(_INomenclatureSignalisation.GetSignalisationList());
         }
 
-        [EnableCors("MyPolicy")]
         [HttpGet("informateurs")]
         public async Task<ActionResult<IEnumerable<NomenclatureInformateur>>> GetInformateurs()
         {
             return await Task.FromResult(_INomenclatureSignalisation.GetInformateurList());
         }
 
-        [EnableCors("MyPolicy")]
+        
         [HttpGet("concernes")]
         public async Task<ActionResult<IEnumerable<NomenclatureConcerne>>> GetConcernes()
         {
@@ -40,6 +39,11 @@ namespace METABack.Controllers
         [HttpPost("add")]
         public async Task<ActionResult<NomenclatureSignalisation>> Post(NomenclatureSignalisation signalisation)
         {
+            signalisation.Acti = true;
+            signalisation.CodeStatus = "0";
+            signalisation.MethodeSignalisation = "0";
+            signalisation.DateSignalisation = DateTime.Now;
+            signalisation.DateDepot = DateTime.Now;
             _INomenclatureSignalisation.AddSignalisation(signalisation);
             return await Task.FromResult(signalisation);
         }

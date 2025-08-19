@@ -116,6 +116,10 @@
 
         public DateTime? DateValFerm { get; set; }
 
+        public string? PositionX { get; set; }
+
+        public string? PositionY { get; set; }
+
         public virtual NomenclatureCommune? CodeCommNavigation { get; set; }
 
         public virtual NomenclatureDelegation? CodeDeleFondNavigation { get; set; }

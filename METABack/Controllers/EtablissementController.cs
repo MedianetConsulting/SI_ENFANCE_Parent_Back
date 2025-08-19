@@ -23,7 +23,24 @@ namespace METABack.Controllers
         {
             return await Task.FromResult(_IEtablissement.GetEtablissementList());
         }
-            
+
+        [HttpGet("detail/{id}")]
+        public async Task<ActionResult<NomenclatureEtablissement>> GetNomenclatureEtablissement(string id)
+        {
+            if (_dbContext.NomenclatureEtablissements == null)
+            {
+                return NotFound();
+            }
+            var nomenclatureEtablissement = await _dbContext.NomenclatureEtablissements.FindAsync(id);
+
+            if (nomenclatureEtablissement == null)
+            {
+                return NotFound();
+            }
+
+            return nomenclatureEtablissement;
+        }
+
         //[EnableCors("MyPolicy")]
         //[HttpGet("etablissements")]
         //public async Task<ActionResult<IEnumerable<NomenclatureEtablissement>>> GetEtablissements()
@@ -33,7 +50,7 @@ namespace METABack.Controllers
         //    return etablissements;
         //}
 
-        
+
         [HttpGet("Libe/{Libe}")]
         public async Task<ActionResult<IEnumerable<ViewEtablissement>>> GetByLibe(string Libe)
         {

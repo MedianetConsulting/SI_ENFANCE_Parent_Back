@@ -7718,11 +7718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_0512\\METABack\\METABack\\METABack.csproj",
+      "projectUniqueName": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_080124\\METABack\\METABack\\METABack.csproj",
       "projectName": "METABack",
-      "projectPath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_0512\\METABack\\METABack\\METABack.csproj",
+      "projectPath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_080124\\METABack\\METABack\\METABack.csproj",
       "packagesPath": "C:\\Users\\Arij\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_0512\\METABack\\METABack\\obj\\",
+      "outputPath": "C:\\Users\\Arij\\Desktop\\MFE\\module Parent\\AppParent_080124\\METABack\\METABack\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

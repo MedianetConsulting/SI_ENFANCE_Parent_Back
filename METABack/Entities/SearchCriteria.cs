@@ -6,5 +6,6 @@
         public string? Delegation { get; set; }
         public string? Etat { get; set; }
         public string? Type { get; set; }
+        public string? CodeEtab { get; set; }
     }
 }
